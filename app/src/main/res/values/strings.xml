@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Smart Hospital</string>
+    <string name="action_settings">Settings</string>
+    <string name="activity_sign_in_smart_hospital">Smart Hospital</string>
+    <string name="activity_sign_in_user_name">User Name</string>
+    <string name="activity_sign_in_password">Password</string>
+    <string name="actitvity_sign_in_sign_in">Sign In</string>
+</resources>
