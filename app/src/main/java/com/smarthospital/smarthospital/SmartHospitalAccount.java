@@ -15,6 +15,7 @@ public class SmartHospitalAccount {
     private final SharedPreferences mSharedPreference;
     private static SmartHospitalAccount sInstance;
 
+
     public static SmartHospitalAccount get(Context context){
         if (sInstance == null) {
             sInstance = new SmartHospitalAccount(context);

@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SmartHospitalAccount account = SmartHospitalAccount.get(MainActivity.this);
+        
 
         if (account.lacksRegistered()) {
             startActivity(SignInActivity.getStartIntent(MainActivity.this));

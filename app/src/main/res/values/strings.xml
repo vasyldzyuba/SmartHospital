@@ -5,4 +5,8 @@
     <string name="activity_sign_in_user_name">User Name</string>
     <string name="activity_sign_in_password">Password</string>
     <string name="actitvity_sign_in_sign_in">Sign In</string>
+    <string name="activity_sign_in_sign_up">Sign Up</string>
+    <string name="activity_sign_in_forgot_password">Forgot password ?</string>
+    <string name="activity_sign_in_new_to_sign">New to sign ?</string>
+    <string name="activity_sign_up_email">Email</string>
 </resources>
