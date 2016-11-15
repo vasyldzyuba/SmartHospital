@@ -15,6 +15,7 @@ android:weightSum="1">
         android:scaleType="center"
         android:layout_above="@+id/textView2" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +32,8 @@ android:weightSum="1">
         android:inputType="textCapSentences"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/activity_sign_in_user_name"/>
+        android:hint="@string/activity_sign_in_user_name"
+        android:id="@+id/editText" />
 
     <EditText
         android:layout_width="match_parent"
