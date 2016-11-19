@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#4B79FF</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">@color/red_500</color>
 
     <color name="blue_a400">#2979FF</color>
     <color name="grey_700">#616161</color>
@@ -17,4 +17,8 @@
     <color name="green_400">#a9cf46</color>
     <color name="green_500">#7fa83e</color>
     <color name="red_400">#EF5350</color>
+
+    <color name="red_500">#F44336</color>
+    <color name="indigo_500">#3F51B5</color>
+    <color name="indigo_900">#1A237E</color>
 </resources>
