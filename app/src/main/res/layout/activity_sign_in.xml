@@ -7,19 +7,10 @@
     android:weightSum="1">
 
     <ImageView
-       android:layout_width="68dp"
-       android:layout_height="58dp"
-       android:scaleType="center"
-       android:src="@mipmap/ic_launcher"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/ic_app_logo"
        android:id="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="28dp"
-        android:textColor="@color/blue_a400"
-        android:text="@string/activity_sign_in_smart_hospital"
-        android:textSize="24sp"/>
 
     <EditText
         android:layout_width="match_parent"
