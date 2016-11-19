@@ -64,4 +64,5 @@ android:weightSum="1">
         android:text="@string/activity_sign_in_sign_up"/>
 
 
+
 </LinearLayout>
