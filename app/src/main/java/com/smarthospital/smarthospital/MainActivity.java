@@ -14,15 +14,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        SmartHospitalAccount account = SmartHospitalAccount.get(MainActivity.this);
-        
-
-        if (account.lacksRegistered()) {
-            startActivity(SignInActivity.getStartIntent(MainActivity.this));
-            finish();
-        }
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
