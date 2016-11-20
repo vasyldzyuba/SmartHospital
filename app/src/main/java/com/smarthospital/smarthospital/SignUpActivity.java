@@ -1,10 +1,12 @@
 package com.smarthospital.smarthospital;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -43,34 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = getEmail();
-                String password = getPassword();
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
-                                    finish();
-                                }
-                            }
-                        });
+                doSignUp(getEmail(), getPassword());
             }
         });
     }
@@ -85,6 +62,53 @@ public class SignUpActivity extends AppCompatActivity {
         return mPasswordEditText.getText().toString().trim();
     }
 
+    private void doSignUp(String email, String password) {
+        if (validateEmailAndPassword(email, password)){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(SignUpActivity.this,new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+    private boolean validateEmailAndPassword(String email, String password) {
+      return validateEmail(email) && validatePassword(password);
+    }
+
+    private boolean validateEmail(String email){
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return true;
+        }
+        showEmailError();
+        return false;
+    }
+
+    private void showEmailError() {
+        Toast.makeText(SignUpActivity.this, "Your email is incorrect", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean validatePassword(String password) {
+        if (TextUtils.isEmpty(password)) {
+            showPasswordError();
+            return false;
+        }
+        return true;
+
+    }
+
+    private void showPasswordError() {
+        Toast.makeText(SignUpActivity.this, "Your password is incorrect", Toast.LENGTH_SHORT).show();
+    }
 }
 
 
