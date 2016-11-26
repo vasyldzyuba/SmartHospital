@@ -1,5 +1,4 @@
 package com.smarthospital.smarthospital;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import java.util.regex.Pattern;
-
-public class SignUpActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     public static Intent getStartIntent(Context context) {
-        Intent startIntent = new Intent(context, SignUpActivity.class);
+        Intent startIntent = new Intent(context, RegisterActivity.class);
         return startIntent;
     }
 
@@ -31,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
         mEmailEditText = (EditText) findViewById(R.id.email_edit_text);
         mPasswordEditText = (EditText) findViewById(R.id.password_edit_text);
@@ -39,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.sign_up_button).setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Toast.makeText(SignUpActivity.this, mEmailEditText.getText(), Toast.LENGTH_SHORT).show();
+               Toast.makeText(RegisterActivity.this, mEmailEditText.getText(), Toast.LENGTH_SHORT).show();
            }
        });
 
@@ -65,16 +62,15 @@ public class SignUpActivity extends AppCompatActivity {
     private void doSignUp(String email, String password) {
         if (validateEmailAndPassword(email, password)){
             mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(SignUpActivity.this,new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(RegisterActivity.this,new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Toast.makeText(SignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                            showToast("createUserWithEmail:onComplete:" + task.isSuccessful());
                             if (task.isSuccessful()) {
-                                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
-                                finish();
+                                startMainActivity();
                             } else {
-                                Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                        Toast.LENGTH_SHORT).show();
+                               showToast("Authentification failed" + task.getException());
+
                             }
                         }
                     });
@@ -94,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void showEmailError() {
-        Toast.makeText(SignUpActivity.this, "Your email is incorrect", Toast.LENGTH_SHORT).show();
+        showToast("Your email is incorrect");
     }
 
     private boolean validatePassword(String password) {
@@ -107,8 +103,22 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void showPasswordError() {
-        Toast.makeText(SignUpActivity.this, "Your password is incorrect", Toast.LENGTH_SHORT).show();
+        showToast("Your password is incorrect");
     }
+
+    private void showConnectionError(){
+        showToast("There is no internet connection");
+    }
+
+    private void showToast(String message){
+        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+    }
+
+    private void startMainActivity(){
+        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+        finish();
+    }
+
 }
 
 
