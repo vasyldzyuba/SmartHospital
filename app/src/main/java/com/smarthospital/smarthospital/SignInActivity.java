@@ -89,13 +89,17 @@ public class SignInActivity extends AppCompatActivity {
     private void doSignIn(String email, String password) {
         if (validateEmailAndPassword(email, password)) {
             if(!checkForConnection()) return;
+            switchView(CHILD_PROGRESS);
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            switchView(CHILD_LOGO);
                             if (task.isSuccessful()){
                                 startActivity(new Intent(SignInActivity.this, MainActivity.class));
                                 finish();
+                            } else {
+                                showToast("Sign In Failed");
                             }
                         }
                     });
@@ -152,7 +156,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
     private void onSignUpButtonClick() {
-        startActivity(SignUpActivity.getStartIntent(SignInActivity.this));
+        startActivity(RegisterActivity.getStartIntent(SignInActivity.this));
     }
 
     private void switchView(int child){
