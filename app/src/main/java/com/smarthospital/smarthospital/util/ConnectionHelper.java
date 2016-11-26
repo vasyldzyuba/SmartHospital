@@ -10,7 +10,7 @@ import android.net.NetworkInfo;
 
 public class ConnectionHelper {
 
-    public static boolean checkIntenetConnection(Context context) {
+    public static boolean checkInternetConnection(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
