@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<!--  MUSTREAD http://developer.alexanderklimov.ru/android/theory/AndroidManifestXML.php-->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smarthospital.smarthospital">
 
