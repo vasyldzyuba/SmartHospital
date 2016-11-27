@@ -44,7 +44,7 @@ android:layout_height="match_parent">
             android:inputType="textPassword"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/activity_sign_in_password"/>
+            android:hint="Password"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
