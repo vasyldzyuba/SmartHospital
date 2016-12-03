@@ -5,6 +5,7 @@ package com.smarthospital.smarthospital.model;
  */
 
 public class Location {
+
     public String address;
     public double latitude;
     public double longitude;

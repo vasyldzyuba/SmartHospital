@@ -1,14 +1,35 @@
 package com.smarthospital.smarthospital;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.smarthospital.smarthospital.model.Hospital;
+import com.smarthospital.smarthospital.ui.ListVerticalSpacingItemDecoration;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class HospitalsActivity extends AppCompatActivity {
+
+    private static final String TAG = "HospitalsActivity";
+
+    private DatabaseReference mDatabaseReference;
+
     //Викликає метод Main Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +43,55 @@ public class HospitalsActivity extends AppCompatActivity {
             return;
         }
 
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.ItemDecoration itemDecoration =
+              new ListVerticalSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_hospital_margin));
+         recyclerView.addItemDecoration(itemDecoration);
+        final HospitalAdapter adapter = new HospitalAdapter(this);
+        recyclerView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("hospitals");
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startSignInActivity();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, dataSnapshot.toString());
+
+                List<Hospital> hospitals = new ArrayList<Hospital>();
+                Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+                while (iterator.hasNext()){
+                    Hospital hospital = iterator.next().getValue(Hospital.class);
+                    hospitals.add(hospital);
+                }
+                adapter.refreshHospitals(hospitals);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.toString());
+
             }
         });
     }
+
+
+    static class HospitalValueEventListener implements ValueEventListener {
+
+
+
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    }
+
 
     private void startSignInActivity() {
         startActivity(SignInActivity.getStartIntent(HospitalsActivity.this));
