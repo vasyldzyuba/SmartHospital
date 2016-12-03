@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-    <!--http://developer.alexanderklimov.ru/android/theory/AndroidManifestXML.php-->
+<?xml version="1.0" encoding="utf-8"?><!--http://developer.alexanderklimov.ru/android/theory/AndroidManifestXML.php-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smarthospital.smarthospital">
 
@@ -21,9 +20,12 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".util.HospitalDetailsActivity"
             android:screenOrientation="portrait"/>
 
     </application>
