@@ -128,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Метод який починає головну активність
     private void startMainActivity(){
-        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+        startActivity(new Intent(RegisterActivity.this, HospitalsActivity.class));
         finish();
     }
 

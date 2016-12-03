@@ -138,7 +138,7 @@ public class SignInActivity extends AppCompatActivity {
                             //Виклик результату при успішності входу
                             if (task.isSuccessful()){
                                 //Запуск main activity при успішному результаті входу
-                                startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                                startActivity(new Intent(SignInActivity.this, HospitalsActivity.class));
                                 //Завершує роботу цієї активності
                                 finish();
                             } else {
