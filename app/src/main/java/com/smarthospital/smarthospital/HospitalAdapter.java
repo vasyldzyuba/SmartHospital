@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.smarthospital.smarthospital.model.Hospital;
 import com.smarthospital.smarthospital.model.Image;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +71,9 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
             mHospital = hospital;
             mNameTextView.setText(mHospital.getName());
             mAdressTextView.setText(mHospital.getLocation().getAddress());
+            Picasso.with(mImageView.getContext())
+                    .load(mHospital.getImage().getUrl())
+                    .into(mImageView);
         }
     }
-
-
 }
