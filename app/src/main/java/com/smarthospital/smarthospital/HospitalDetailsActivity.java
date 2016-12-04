@@ -1,36 +1,29 @@
-package com.smarthospital.smarthospital.util;
+package com.smarthospital.smarthospital;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.smarthospital.smarthospital.R;
 
-/**
- * Created by HOME-PC on 03.12.2016.
- */
+import com.smarthospital.smarthospital.model.Hospital;
+
+
 
 
 public class HospitalDetailsActivity extends AppCompatActivity {
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    private static final String EXTRA_HOSPITAL = "hospital";
 
-    public static Intent getStartIntent(Context context) {
+    public static Intent getStartIntent(Context context, Hospital hospital) {
         Intent startIntent = new Intent(context, HospitalDetailsActivity.class);
+        startIntent.putExtra(EXTRA_HOSPITAL, hospital);
+
         return startIntent;
     }
+
 
     ImageView mImageView;
 

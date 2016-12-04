@@ -1,21 +1,17 @@
 package com.smarthospital.smarthospital;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.smarthospital.smarthospital.model.Hospital;
 import com.smarthospital.smarthospital.ui.ListVerticalSpacingItemDecoration;
@@ -50,6 +46,12 @@ public class HospitalsActivity extends AppCompatActivity {
               new ListVerticalSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_hospital_margin));
          recyclerView.addItemDecoration(itemDecoration);
         final HospitalAdapter adapter = new HospitalAdapter(this);
+        adapter.setOnItemClickListener(new HospitalAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Hospital hospital) {
+                startActivity(HospitalDetailsActivity.getStartIntent(HospitalsActivity.this, hospital));
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("hospitals");
