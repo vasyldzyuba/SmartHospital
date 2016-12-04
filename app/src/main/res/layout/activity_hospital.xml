@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,50 +18,52 @@
 
 
     <ImageView
+        android:id="@+id/image_view"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="6dp"
-        android:src="@drawable/imag0162"
-        android:id="@+id/imageView2" />
+        android:scaleType="centerCrop"
+        tools:src="@drawable/imag0162" />
 
     <TextView
+        android:id="@+id/text_view_name"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:text="Boris"
+        android:layout_marginTop="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@color/blue_a400"
-        android:textSize="32dp" />
+        tools:text="Boris" />
+
 
     <TextView
+        android:id="@+id/text_view_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Private Hospital"
+        android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/blue_a400"
-        android:textSize="20dp" />
+        tools:text="12th Avenue Mykoly Bazhana" />
 
     <TextView
+        android:id="@+id/text_view_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="12th Avenue Mykoly Bazhana"
         android:textColor="@color/blue_a400"
-        android:textSize="20dp" />
-
+        android:textAppearance="?android:textAppearanceMedium"
+        tools:text="+380442380000" />
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/text_view_description"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="+380442380000"
-        android:textColor="@color/blue_a400"
-        android:textSize="20dp" />
-
+        android:layout_marginStart="16sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginTop="16sp"
+        android:textColor="@color/black"
+        tools:text="Description"
+        android:textAppearance="?android:textAppearanceMedium"/>
 
 </LinearLayout>

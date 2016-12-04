@@ -37,7 +37,8 @@
             android:textSize="36sp"
             android:textColor="@color/white"
             android:ellipsize="marquee"
-            android:text="BORIS" android:maxLines="1"/>
+            android:text="BORIS"
+            android:maxLines="1"/>
 
         <TextView
             android:id="@+id/text_view_address"

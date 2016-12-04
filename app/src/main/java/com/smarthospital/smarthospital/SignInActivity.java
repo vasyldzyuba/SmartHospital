@@ -31,7 +31,7 @@ public class SignInActivity extends AppCompatActivity {
         return startIntent;
     }
 
-    //Позиція логотопу в перемикачі
+    //Позиція логотипу в перемикачі
     private static final int CHILD_LOGO = 0;
     //Позиція крутілки в перемикачі
     private static final int CHILD_PROGRESS = 1;
