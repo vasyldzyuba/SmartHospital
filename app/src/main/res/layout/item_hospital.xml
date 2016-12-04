@@ -14,14 +14,13 @@
        android:id="@+id/photo_image_view"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       tools:scaleType="centerCrop"
+       android:scaleType="centerCrop"
        tools:src="@color/blue_a400"
        tools:ignore="ContentDescription"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/blue_a400">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/text_view_name"
