@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 
 import com.smarthospital.smarthospital.model.Hospital;
-
-
+import com.squareup.picasso.Picasso;
 
 
 public class HospitalDetailsActivity extends AppCompatActivity {
@@ -45,7 +44,19 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         mAddressTextView = (TextView) findViewById(R.id.text_view_address);
         mNumberTextView = (TextView) findViewById(R.id.text_view_phone_number);
         mDescriptionTextView = (TextView) findViewById(R.id.text_view_description);
+        Hospital hospital = getIntent().getParcelableExtra(EXTRA_HOSPITAL);
     }
+
+    private void bindHospital(Hospital hospital){
+        Picasso.with(mImageView.getContext())
+                .load(hospital.getImage().getUrl())
+                .into(mImageView);
+        mNameTextView.setText(mNameTextView.getText());
+        mAddressTextView.setText(mAddressTextView.getText());
+        mDescriptionTextView.setText(mDescriptionTextView.getText());
+
+    }
+
 }
 
 
