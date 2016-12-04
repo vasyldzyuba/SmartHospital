@@ -38,6 +38,5 @@ public class SmartHospitalAccount {
                 .putBoolean(KEY_REGISTERED, registered)
                 .apply();
     }
-
 }
 

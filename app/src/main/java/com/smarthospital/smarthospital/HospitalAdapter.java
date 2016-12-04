@@ -24,6 +24,16 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
     private final LayoutInflater mLayoutInflater;
     private final List<Hospital> mHospitalList;
 
+    public interface OnItemClickListener {
+        void onItemClick(Hospital hospital);
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
     public HospitalAdapter(Context MYKOLA) {
         mLayoutInflater = LayoutInflater.from(MYKOLA);
         mHospitalList = new ArrayList<>();
@@ -31,7 +41,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemHospital = mLayoutInflater.inflate(R.layout.item_hospital, parent , false);
+        View itemHospital = mLayoutInflater.inflate(R.layout.item_hospital, parent, false);
         return new ViewHolder(itemHospital);
     }
 
@@ -46,7 +56,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
         return mHospitalList.size();
     }
 
-    public void refreshHospitals(List<Hospital> hospitals){
+    public void refreshHospitals(List<Hospital> hospitals) {
         mHospitalList.clear();
         mHospitalList.addAll(hospitals);
         notifyDataSetChanged();
@@ -65,6 +75,14 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
             mImageView = (ImageView) itemView.findViewById(R.id.photo_image_view);
             mNameTextView = (TextView) itemView.findViewById(R.id.text_view_name);
             mAdressTextView = (TextView) itemView.findViewById(R.id.text_view_address);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mOnItemClickListener != null){
+                        mOnItemClickListener.onItemClick(mHospital);
+                    }
+                }
+            });
         }
 
         public void bindHospital(Hospital hospital) {
@@ -76,4 +94,6 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
                     .into(mImageView);
         }
     }
+
+
 }
