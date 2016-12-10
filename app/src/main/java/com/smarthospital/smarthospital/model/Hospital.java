@@ -4,6 +4,9 @@ package com.smarthospital.smarthospital.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by HOME-PC on 27.11.2016.
  */
@@ -22,6 +25,8 @@ public class Hospital implements Parcelable {
     public Image image;
     /*Це для того щоб кожна лікарня мала своє місце знаходження*/
     public Location location;
+    public List<Ward> wards = new ArrayList<>();
+
 
     public Hospital() {
     }
@@ -76,6 +81,14 @@ public class Hospital implements Parcelable {
     /*Отримання імені*/
     public String getName() {
         return name;
+    }
+
+    public List<Ward> getWards() {
+        return wards;
+    }
+
+    public void setWards(List<Ward> wards) {
+        this.wards = wards;
     }
 
     @Override
