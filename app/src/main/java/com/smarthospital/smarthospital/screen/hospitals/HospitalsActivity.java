@@ -1,11 +1,13 @@
 package com.smarthospital.smarthospital.screen.hospitals;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.ViewSwitcher;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +31,15 @@ public class HospitalsActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabaseReference;
 
+    private ViewSwitcher mViewSwitcher;
+
+    private FloatingActionButton mMapButton;
+
     //Викликає метод Main Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_hospitals);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -42,12 +48,16 @@ public class HospitalsActivity extends AppCompatActivity {
             return;
         }
 
+        mViewSwitcher = (ViewSwitcher) findViewById(R.id.view_switcher);
+        mMapButton = (FloatingActionButton) findViewById(R.id.map_button);
+
+
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.ItemDecoration itemDecoration =
-              new ListVerticalSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_hospital_margin));
-         recyclerView.addItemDecoration(itemDecoration);
+                new ListVerticalSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_hospital_margin));
+        recyclerView.addItemDecoration(itemDecoration);
         final HospitalsAdapter adapter = new HospitalsAdapter(this);
         adapter.setOnItemClickListener(new HospitalsAdapter.OnItemClickListener() {
             @Override
@@ -66,11 +76,13 @@ public class HospitalsActivity extends AppCompatActivity {
                 List<Hospital> hospitals = new ArrayList<Hospital>();
                 Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
                 Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     Hospital hospital = iterator.next().getValue(Hospital.class);
                     hospitals.add(hospital);
                 }
                 adapter.refreshHospitals(hospitals);
+                mViewSwitcher.setDisplayedChild(1);
+                mMapButton.show();
             }
 
             @Override
@@ -80,23 +92,6 @@ public class HospitalsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-    static class HospitalValueEventListener implements ValueEventListener {
-
-
-
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    }
-
 
     private void startSignInActivity() {
         startActivity(SignInActivity.getStartIntent(HospitalsActivity.this));
