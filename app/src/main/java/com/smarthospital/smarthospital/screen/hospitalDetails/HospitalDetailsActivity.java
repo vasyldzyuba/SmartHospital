@@ -1,4 +1,4 @@
-package com.smarthospital.smarthospital;
+package com.smarthospital.smarthospital.screen.hospitalDetails;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.smarthospital.smarthospital.R;
 import com.smarthospital.smarthospital.model.Hospital;
 import com.squareup.picasso.Picasso;
 
