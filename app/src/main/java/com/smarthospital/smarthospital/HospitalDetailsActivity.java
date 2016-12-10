@@ -45,18 +45,17 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         mNumberTextView = (TextView) findViewById(R.id.text_view_phone_number);
         mDescriptionTextView = (TextView) findViewById(R.id.text_view_description);
         Hospital hospital = getIntent().getParcelableExtra(EXTRA_HOSPITAL);
+        bindHospital(hospital);
     }
 
     private void bindHospital(Hospital hospital){
         Picasso.with(mImageView.getContext())
                 .load(hospital.getImage().getUrl())
                 .into(mImageView);
-        mNameTextView.setText(mNameTextView.getText());
-        mAddressTextView.setText(mAddressTextView.getText());
-        mDescriptionTextView.setText(mDescriptionTextView.getText());
-
+        mNameTextView.setText(hospital.getName());
+        mAddressTextView.setText(hospital.getLocation().getAddress());
+        mDescriptionTextView.setText(hospital.getDescription());
     }
-
 }
 
 
