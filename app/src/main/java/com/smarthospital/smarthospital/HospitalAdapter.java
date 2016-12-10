@@ -85,7 +85,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
             });
         }
 
-        public void bindHospital(Hospital hospital) {
+        void bindHospital(Hospital hospital) {
             mHospital = hospital;
             mNameTextView.setText(mHospital.getName());
             mAdressTextView.setText(mHospital.getLocation().getAddress());
