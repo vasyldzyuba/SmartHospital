@@ -10,4 +10,5 @@
     <string name="activity_sign_in_new_to_sign">New to sign ?</string>
     <string name="activity_sign_up_email">Email</string>
     <string name="activity_sign_up_password">Password</string>
+    <string name="wards">Wards</string>
 </resources>

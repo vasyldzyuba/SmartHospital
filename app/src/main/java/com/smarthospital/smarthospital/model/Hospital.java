@@ -25,8 +25,8 @@ public class Hospital implements Parcelable {
     public Image image;
     /*Це для того щоб кожна лікарня мала своє місце знаходження*/
     public Location location;
-    public List<Ward> wards = new ArrayList<>();
 
+    public List<Ward> wards = new ArrayList<>();
 
     public Hospital() {
     }

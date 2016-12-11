@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.smarthospital.smarthospital.R;
 import com.smarthospital.smarthospital.model.Hospital;
+import com.smarthospital.smarthospital.model.Ward;
 import com.squareup.picasso.Picasso;
 
 
@@ -27,6 +29,7 @@ public class HospitalDetailsActivity extends AppCompatActivity {
     }
 
 
+
     ImageView mImageView;
 
   //  TextView mNameTextView;
@@ -37,13 +40,34 @@ public class HospitalDetailsActivity extends AppCompatActivity {
 
     TextView mDescriptionTextView;
 
+    Hospital mHospital;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital);
-        Hospital hospital = getIntent().getParcelableExtra(EXTRA_HOSPITAL);
+        mHospital = getIntent().getParcelableExtra(EXTRA_HOSPITAL);
+
+        Ward ward1 = new Ward();
+        ward1.name = "Odun";
+        mHospital.getWards().add(ward1);
+
+        Ward ward2 = new Ward();
+        ward2.name = "Dwa";
+        mHospital.getWards().add(ward2);
+
+
+        Ward ward3 = new Ward();
+        ward3.name = "Tru";
+        mHospital.getWards().add(ward3);
+
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(hospital.getName());
+        toolbar.setTitle(mHospital.getName());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +81,15 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         mAddressTextView = (TextView) findViewById(R.id.text_view_address);
         mNumberTextView = (TextView) findViewById(R.id.text_view_phone_number);
         mDescriptionTextView = (TextView) findViewById(R.id.text_view_description);
-
-        bindHospital(hospital);
+        Button wards = (Button)findViewById(R.id.button_wards);
+        wards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WardsDialog wardsDialog = WardsDialog.newInstance(mHospital.getWards());
+                wardsDialog.show(getSupportFragmentManager(), "");
+            }
+        });
+        bindHospital(mHospital);
     }
 
     private void bindHospital(Hospital hospital){
@@ -68,7 +99,7 @@ public class HospitalDetailsActivity extends AppCompatActivity {
       //  mNameTextView.setText(hospital.getName());
         mAddressTextView.setText(hospital.getLocation().getAddress());
 //        mDescriptionTextView.setText(hospital.getDescription());
-        mDescriptionTextView.setText("uishfjkhdjkfhdhfihdiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisihfihsihfihsifhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhpiosjjdoijjfiodjiogjidjgihdighidhgidhigidgdhg8dhuighuidigdigjidjgijdigjdigjiodjgiodjogjiodjgidjgidjggdgdgdvgvgvgvgvgvgv");
+        mDescriptionTextView.setText("uishfjkhdjkfhdhfihdiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisihfihsihfihsifhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhpiosjjdoijjfiodjiogjidjgihdighidhgidhigidgdhg8dhuighuidigdigj");
     }
 }
 
