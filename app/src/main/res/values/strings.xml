@@ -11,4 +11,5 @@
     <string name="activity_sign_up_email">Email</string>
     <string name="activity_sign_up_password">Password</string>
     <string name="wards">Wards</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
