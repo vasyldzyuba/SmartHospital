@@ -1,5 +1,6 @@
 package com.smarthospital.smarthospital.screen.hospitals;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ViewSwitcher;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +21,7 @@ import com.smarthospital.smarthospital.R;
 import com.smarthospital.smarthospital.model.Hospital;
 import com.smarthospital.smarthospital.screen.hospitalDetails.HospitalDetailsActivity;
 import com.smarthospital.smarthospital.screen.entry.SignInActivity;
+import com.smarthospital.smarthospital.screen.maps.MapsActivity;
 import com.smarthospital.smarthospital.ui.ListVerticalSpacingItemDecoration;
 
 import java.util.ArrayList;
@@ -50,7 +53,12 @@ public class HospitalsActivity extends AppCompatActivity {
 
         mViewSwitcher = (ViewSwitcher) findViewById(R.id.view_switcher);
         mMapButton = (FloatingActionButton) findViewById(R.id.map_button);
-
+        mMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(MapsActivity.getStartIntent(HospitalsActivity.this));
+            }
+        });
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
