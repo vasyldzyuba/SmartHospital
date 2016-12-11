@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Ward implements Parcelable{
     public String name;
-    public String id;
+    public int id;
     List<Doctor> doctors = new ArrayList<>();
 
     public Ward() {
@@ -20,7 +20,7 @@ public class Ward implements Parcelable{
 
     protected Ward(Parcel in) {
         name = in.readString();
-        id = in.readString();
+        id = in.readInt();
         doctors = in.createTypedArrayList(Doctor.CREATOR);
     }
 
@@ -40,24 +40,12 @@ public class Ward implements Parcelable{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public List<Doctor> getDoctors() {
         return doctors;
-    }
-
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
     }
 
     @Override
@@ -77,7 +65,7 @@ public class Ward implements Parcelable{
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
-        parcel.writeString(id);
+        parcel.writeInt(id);
         parcel.writeTypedList(doctors);
     }
 }
