@@ -91,9 +91,8 @@ public class HospitalsAdapter extends RecyclerView.Adapter<HospitalsAdapter.View
             mAdressTextView.setText(mHospital.getLocation().getAddress());
             Picasso.with(mImageView.getContext())
                     .load(mHospital.getImage().getUrl())
+                    .placeholder(R.color.grey_400)
                     .into(mImageView);
         }
     }
-
-
 }
