@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_doctor_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/photo_image_view"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                tools:background="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                tools:text="Марія Іванівна" />
+
+            <TextView
+                android:id="@+id/text_view_speciality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:textColor="@color/grey_800"
+                android:textSize="16sp"
+                tools:text="керівник проекту та генеральний директор" />
+
+            <TextView
+                android:id="@+id/text_view_bio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textColor="@color/blue_a400"
+                android:textSize="16sp"
+                tools:text="Закінчила Київський медичний інститут та клінічну ординатуру з акушерства та гінекології в Центральному інституті удосконалення лікарів у Москві.
+10 років працювала лікарем-акушер-гінекологом.
+У 1998–2002 рр. була менеджером фармацевтичного сектора (компанії «Хоффманн-ЛяРош» та «Дарниця»).
+У 2002–2003 рр. створила перший медичний бізнес-проект «ТАС – клініка сімейної медицини».
+У 2003 – 2008 рр. займалася створенням і керувала роботою медичного центру «Добробут»." />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

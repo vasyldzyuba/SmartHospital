@@ -24,15 +24,13 @@ public class HospitalDetailsActivity extends AppCompatActivity {
     public static Intent getStartIntent(Context context, Hospital hospital) {
         Intent startIntent = new Intent(context, HospitalDetailsActivity.class);
         startIntent.putExtra(EXTRA_HOSPITAL, hospital);
-
         return startIntent;
     }
 
 
-
     ImageView mImageView;
 
-  //  TextView mNameTextView;
+    //  TextView mNameTextView;
 
     TextView mAddressTextView;
 
@@ -63,9 +61,6 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         mHospital.getWards().add(ward3);
 
 
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(mHospital.getName());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -77,11 +72,11 @@ public class HospitalDetailsActivity extends AppCompatActivity {
 
 
         mImageView = (ImageView) findViewById(R.id.image_view);
-       // mNameTextView = (TextView) findViewById(R.id.text_view_name);
+        // mNameTextView = (TextView) findViewById(R.id.text_view_name);
         mAddressTextView = (TextView) findViewById(R.id.text_view_address);
         mNumberTextView = (TextView) findViewById(R.id.text_view_phone_number);
         mDescriptionTextView = (TextView) findViewById(R.id.text_view_description);
-        Button wards = (Button)findViewById(R.id.button_wards);
+        Button wards = (Button) findViewById(R.id.button_wards);
         wards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,11 +87,11 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         bindHospital(mHospital);
     }
 
-    private void bindHospital(Hospital hospital){
+    private void bindHospital(Hospital hospital) {
         Picasso.with(mImageView.getContext())
                 .load(hospital.getImage().getUrl())
                 .into(mImageView);
-      //  mNameTextView.setText(hospital.getName());
+        //  mNameTextView.setText(hospital.getName());
         mAddressTextView.setText(hospital.getLocation().getAddress());
 //        mDescriptionTextView.setText(hospital.getDescription());
         mDescriptionTextView.setText("uishfjkhdjkfhdhfihdiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisihfihsihfihsifhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhpiosjjdoijjfiodjiogjidjgihdighidhgidhigidgdhg8dhuighuidigdigj");

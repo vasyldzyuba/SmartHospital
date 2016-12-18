@@ -58,7 +58,12 @@
 
         <activity
             android:name=".screen.maps.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".screen.doctors.DoctorsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".screen.doctorDetails.DoctorDetailsActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>
