@@ -38,6 +38,44 @@ public class HospitalsActivity extends AppCompatActivity {
 
     private FloatingActionButton mMapButton;
 
+    private HospitalsAdapter mHospitalsAdapter;
+
+    private final ValueEventListener mValueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            Log.d(TAG, dataSnapshot.toString());
+
+            List<Hospital> hospitals = new ArrayList<Hospital>();
+            Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
+            Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+            while (iterator.hasNext()) {
+                Hospital hospital = iterator.next().getValue(Hospital.class);
+                hospitals.add(hospital);
+            }
+            mHospitalsAdapter.refreshHospitals(hospitals);
+            mViewSwitcher.setDisplayedChild(1);
+            mMapButton.show();
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.d(TAG, databaseError.toString());
+
+        }
+    } ;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mDatabaseReference.addValueEventListener(mValueEventListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mDatabaseReference.removeEventListener(mValueEventListener);
+    }
+
     //Викликає метод Main Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,46 +97,23 @@ public class HospitalsActivity extends AppCompatActivity {
                 startActivity(MapsActivity.getStartIntent(HospitalsActivity.this));
             }
         });
-
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.ItemDecoration itemDecoration =
                 new ListVerticalSpacingItemDecoration(getResources().getDimensionPixelSize(R.dimen.item_hospital_margin));
         recyclerView.addItemDecoration(itemDecoration);
-        final HospitalsAdapter adapter = new HospitalsAdapter(this);
-        adapter.setOnItemClickListener(new HospitalsAdapter.OnItemClickListener() {
+         mHospitalsAdapter = new HospitalsAdapter(this) ;
+        mHospitalsAdapter.setOnItemClickListener(new HospitalsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Hospital hospital) {
                 startActivity(HospitalDetailsActivity.getStartIntent(HospitalsActivity.this, hospital));
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(mHospitalsAdapter);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("hospitals");
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, dataSnapshot.toString());
 
-                List<Hospital> hospitals = new ArrayList<Hospital>();
-                Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
-                while (iterator.hasNext()) {
-                    Hospital hospital = iterator.next().getValue(Hospital.class);
-                    hospitals.add(hospital);
-                }
-                adapter.refreshHospitals(hospitals);
-                mViewSwitcher.setDisplayedChild(1);
-                mMapButton.show();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, databaseError.toString());
-
-            }
-        });
     }
 
     private void startSignInActivity() {
