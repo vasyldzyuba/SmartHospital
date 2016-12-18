@@ -14,7 +14,7 @@ public class Doctor implements Parcelable{
     public Image photo;
 
     public Doctor (){
-
+ 
     }
 
     protected Doctor(Parcel in) {
