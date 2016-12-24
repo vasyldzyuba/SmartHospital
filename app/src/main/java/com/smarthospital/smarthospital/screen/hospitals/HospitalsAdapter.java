@@ -62,6 +62,10 @@ public class HospitalsAdapter extends RecyclerView.Adapter<HospitalsAdapter.View
         notifyDataSetChanged();
     }
 
+    public List<Hospital> getHospitalList() {
+        return mHospitalList;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView mImageView;

@@ -47,19 +47,6 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hospital);
         mHospital = getIntent().getParcelableExtra(EXTRA_HOSPITAL);
 
-        Ward ward1 = new Ward();
-        ward1.name = "Odun";
-        mHospital.getWards().add(ward1);
-
-        Ward ward2 = new Ward();
-        ward2.name = "Dwa";
-        mHospital.getWards().add(ward2);
-
-
-        Ward ward3 = new Ward();
-        ward3.name = "Tru";
-        mHospital.getWards().add(ward3);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(mHospital.getName());
@@ -93,9 +80,6 @@ public class HospitalDetailsActivity extends AppCompatActivity {
                 .into(mImageView);
         //  mNameTextView.setText(hospital.getName());
         mAddressTextView.setText(hospital.getLocation().getAddress());
-//        mDescriptionTextView.setText(hospital.getDescription());
-        mDescriptionTextView.setText("uishfjkhdjkfhdhfihdiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisihfihsihfihsifhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhpiosjjdoijjfiodjiogjidjgihdighidhgidhigidgdhg8dhuighuidigdigj");
+        mDescriptionTextView.setText(hospital.getDescription());
     }
 }
-
-

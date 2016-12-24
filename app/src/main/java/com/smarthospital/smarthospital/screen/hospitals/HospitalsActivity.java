@@ -94,7 +94,7 @@ public class HospitalsActivity extends AppCompatActivity {
         mMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(MapsActivity.getStartIntent(HospitalsActivity.this));
+                startActivity(MapsActivity.getStartIntent(HospitalsActivity.this, mHospitalsAdapter.getHospitalList()));
             }
         });
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

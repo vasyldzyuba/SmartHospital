@@ -42,6 +42,7 @@ public class Hospital implements Parcelable {
         description = in.readString();
         image = in.readParcelable(Image.class.getClassLoader());
         location = in.readParcelable(Location.class.getClassLoader());
+        wards = in.createTypedArrayList(Ward.CREATOR);
     }
 
     /*Це поле необхідно для Android, щоб мати можливість створювати нові об'єкти,
@@ -116,5 +117,6 @@ public class Hospital implements Parcelable {
         parcel.writeString(description);
         parcel.writeParcelable(image, i);
         parcel.writeParcelable(location, i);
+        parcel.writeTypedList(wards);
     }
 }
