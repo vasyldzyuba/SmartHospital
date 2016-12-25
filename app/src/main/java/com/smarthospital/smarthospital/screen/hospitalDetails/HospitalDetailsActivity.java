@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.smarthospital.smarthospital.R;
 import com.smarthospital.smarthospital.model.Hospital;
 import com.smarthospital.smarthospital.model.Ward;
+import com.smarthospital.smarthospital.screen.doctors.DoctorsActivity;
 import com.squareup.picasso.Picasso;
 
 
@@ -59,7 +60,6 @@ public class HospitalDetailsActivity extends AppCompatActivity {
 
 
         mImageView = (ImageView) findViewById(R.id.image_view);
-        // mNameTextView = (TextView) findViewById(R.id.text_view_name);
         mAddressTextView = (TextView) findViewById(R.id.text_view_address);
         mNumberTextView = (TextView) findViewById(R.id.text_view_phone_number);
         mDescriptionTextView = (TextView) findViewById(R.id.text_view_description);
@@ -69,6 +69,12 @@ public class HospitalDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 WardsDialog wardsDialog = WardsDialog.newInstance(mHospital.getWards());
                 wardsDialog.show(getSupportFragmentManager(), "");
+                wardsDialog.setOnItemClickListener(new WardsDialog.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Ward ward) {
+                        startActivity(DoctorsActivity.getStartIntent(HospitalDetailsActivity.this, ward));
+                    }
+                });
             }
         });
         bindHospital(mHospital);
@@ -78,8 +84,8 @@ public class HospitalDetailsActivity extends AppCompatActivity {
         Picasso.with(mImageView.getContext())
                 .load(hospital.getImage().getUrl())
                 .into(mImageView);
-        //  mNameTextView.setText(hospital.getName());
         mAddressTextView.setText(hospital.getLocation().getAddress());
         mDescriptionTextView.setText(hospital.getDescription());
+        mNumberTextView.setText(hospital.getNumber());
     }
 }

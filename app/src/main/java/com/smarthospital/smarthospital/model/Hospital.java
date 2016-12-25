@@ -21,6 +21,8 @@ public class Hospital implements Parcelable {
     public String name;
     /*Це для того щоб кожна лікарня мала свій опис*/
     public String description;
+
+    public String phone;
     /*Це для того щоб кожна лікарня мала своє фото*/
     public Image image;
     /*Це для того щоб кожна лікарня мала своє місце знаходження*/
@@ -40,6 +42,7 @@ public class Hospital implements Parcelable {
         name = in.readString();
         /*Щоб отримати опис*/
         description = in.readString();
+        phone = in.readString();
         image = in.readParcelable(Image.class.getClassLoader());
         location = in.readParcelable(Location.class.getClassLoader());
         wards = in.createTypedArrayList(Ward.CREATOR);
@@ -69,6 +72,8 @@ public class Hospital implements Parcelable {
         return id;
     }
 
+    public String getNumber(){return phone;}
+
     /*Отримання фото*/
     public Image getImage() {
         return image;
@@ -88,19 +93,17 @@ public class Hospital implements Parcelable {
         return wards;
     }
 
-    public void setWards(List<Ward> wards) {
-        this.wards = wards;
-    }
 
     @Override
-    /*Метод для об'єктів*/
     public String toString() {
         return "Hospital{" +
-                "description='" + description + '\'' +
-                ", id='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", phone='" + phone + '\'' +
                 ", image=" + image +
                 ", location=" + location +
+                ", wards=" + wards +
                 '}';
     }
 
@@ -115,6 +118,7 @@ public class Hospital implements Parcelable {
         parcel.writeString(id);
         parcel.writeString(name);
         parcel.writeString(description);
+        parcel.writeString(phone);
         parcel.writeParcelable(image, i);
         parcel.writeParcelable(location, i);
         parcel.writeTypedList(wards);

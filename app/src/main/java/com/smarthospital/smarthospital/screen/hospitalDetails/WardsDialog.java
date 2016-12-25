@@ -1,6 +1,5 @@
 package com.smarthospital.smarthospital.screen.hospitalDetails;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -34,16 +33,34 @@ public class WardsDialog extends BottomSheetDialogFragment {
         return nazar;
     }
 
+    public interface OnItemClickListener{
+        void onItemClick(Ward ward);
+
+    }
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        LinearLayout rootView = (LinearLayout) inflater.inflate(R.layout.dialog_wards, container, false);
         List<Ward> wards = getArguments().getParcelableArrayList(ARGUMENT_WARDS);
 
-                for (Ward wd : wards){
+                for (final Ward wd : wards){
                     TextView textView = (TextView) inflater.inflate(R.layout.item_ward, rootView, false);
                     rootView.addView(textView);
                     textView.setText(wd.getName());
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick(wd);
+                            }
+                        }
+                    });
                 }
         return rootView;
 

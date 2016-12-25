@@ -78,26 +78,29 @@
             android:id="@+id/text_view_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/blue_a400"
+            android:drawableLeft="@drawable/ic_place_blue_a400_alpha_24dp"
+            android:drawablePadding="8dp"
             tools:text="12th Avenue Mykoly Bazhana" />
 
         <TextView
             android:id="@+id/text_view_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/blue_a400"
             android:textAppearance="?android:textAppearanceMedium"
+            android:drawableLeft="@drawable/ic_phone_blue_a400_alpha_24dp"
+            android:drawablePadding="8dp"
             tools:text="+380442380000" />
 
         <TextView
             android:id="@+id/text_view_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
             tools:text="Description"
             android:textAppearance="?android:textAppearanceMedium"/>
@@ -112,6 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
         android:text="@string/wards"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:theme="@style/WardButton"/>
 
 </android.support.design.widget.CoordinatorLayout>

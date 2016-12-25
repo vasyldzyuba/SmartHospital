@@ -69,4 +69,5 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         mBioTextView.setText(doctor.getBio());
 
     }
+
 }
